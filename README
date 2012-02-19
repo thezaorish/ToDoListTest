@@ -1,1 +1,8 @@
-This is the functional tests project for Android project www.github.com/thezaorish/ToDoList
+Functional tests project for Android project www.github.com/thezaorish/ToDoList.
+Implemented with Robotium framework: http://code.google.com/p/robotium/
+
+To run this project you need to:
+ - download the robotium jar: http://code.google.com/p/robotium/downloads/detail?name=robotium-solo-3.1.jar
+ - add the jar in the project's build path
+
+
