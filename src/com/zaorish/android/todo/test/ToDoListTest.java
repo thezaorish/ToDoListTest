@@ -27,9 +27,11 @@ public class ToDoListTest extends ActivityInstrumentationTestCase2<ToDoListActiv
 		super.setUp();
 		solo = new Solo(getInstrumentation(), getActivity());
 
-		// configure a task
 		solo.clickOnMenuItem("Add Task");
 
+		solo.assertCurrentActivity("expected activity", ToDoDetailsActivity.class);
+
+		// configure a task
 		solo.clearEditText(0);
 		solo.enterText(0, TASK_NAME);
 
@@ -58,6 +60,13 @@ public class ToDoListTest extends ActivityInstrumentationTestCase2<ToDoListActiv
 		super.tearDown();
 	}
 
+	/**
+	 * Scenario: User should be able to create new tasks <br>
+	 * Given a user chooses to create a new task <br>
+	 * And the user configures name, description and priority for the task <br>
+	 * When the user saves the task <br>
+	 * Then the user should see the details of the newly created task
+	 */
 	public void testCreateTask() throws Exception {
 		// given a configured task
 
@@ -70,6 +79,11 @@ public class ToDoListTest extends ActivityInstrumentationTestCase2<ToDoListActiv
 		Assert.assertTrue(solo.searchText(TASK_NAME));
 	}
 
+	/**
+	 * Scenario: User should be able to view the existing tasks <br>
+	 * Given the user previously created some tasks <br>
+	 * Then the user should see the details of the existing task
+	 */
 	public void testDisplayTheExistingTask() throws Exception {
 		// given an existing task
 		solo.clickOnButton("Save");
@@ -90,6 +104,13 @@ public class ToDoListTest extends ActivityInstrumentationTestCase2<ToDoListActiv
 		solo.clickOnButton("Save");
 	}
 
+	/**
+	 * Scenario: User should be able to modify the existing tasks <br>
+	 * Given the user previously created some tasks <br>
+	 * And the user chooses to modify an existing task <br>
+	 * When the user saves the task <br>
+	 * Then the user should see the details of the newly modified task
+	 */
 	public void testModifyTheExistingTask() throws Exception {
 		// given an existing task
 		solo.clickOnButton("Save");
@@ -112,6 +133,16 @@ public class ToDoListTest extends ActivityInstrumentationTestCase2<ToDoListActiv
 		solo.assertCurrentActivity("expected activity", ToDoListActivity.class);
 		// and the name of the task just updated should be displayed
 		Assert.assertTrue(solo.searchText("another name"));
+	}
+
+	/**
+	 * Scenario: User should be able to delete the existing tasks <br>
+	 * Given the user previously created some tasks <br>
+	 * When the user deletes one of the existing tasks <br>
+	 * Then the user should not see the details of the deleted task
+	 */
+	public void testDeleteTask() throws Exception {
+		// setUp + tearDown verify this one
 	}
 
 }
